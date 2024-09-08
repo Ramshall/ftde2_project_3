@@ -57,7 +57,19 @@ The Orchestrator
 
 ![Screenshot 2024-09-08 134527](https://github.com/user-attachments/assets/d120a859-ea65-4ce8-8a68-8fccc5084a39)
 
+The DAG d_1_batch_processing_spark performs two main tasks:
 
+* Top Countries Analysis
+* Total Films per Category Analysis
+
+The DAG runs daily at 23:00 UTC, executing a start task, followed by parallel processing of Top Countries and Total Films per Category analyses, before concluding with an end task.
+
+Ensure the following Airflow connections are set up:
+* postgres_conn: Connection to PostgreSQL database
+* tidb_conn: Connection to TiDB database
+
+Also, set up the Airflow Variable:
+* spark_jars_packages: Required Spark JAR packages
 
 ## Results
 The transformed rental data is stored in Parquet files and TiDB and the API exposes the processed data for external access, and Postman can be used to test it.
